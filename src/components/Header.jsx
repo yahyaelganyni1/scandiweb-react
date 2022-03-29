@@ -12,7 +12,7 @@ export default class Header extends Component {
         <nav>
           <ul>
             <Link to="/">
-              <li>women</li>
+              <li>Women</li>
             </Link>
             <Link to="/">
               <li>Men</li>
