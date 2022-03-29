@@ -24,7 +24,7 @@ export default class Header extends Component {
           <img src={logo} alt="website logo" />
           <ul>
             <li>
-              $<img src={dropdown} alt="dropdown logo" />
+              $ <img src={dropdown} alt="dropdown logo" />
             </li>
             <li>
               <Link to="\">
