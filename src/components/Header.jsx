@@ -3,15 +3,23 @@ import logo from '../images/logo.svg';
 import dropdown from '../images/dropdown.svg';
 import cart from '../images/cart.svg';
 import './header.scss';
+import { Link } from 'react-router-dom';
+
 export default class Header extends Component {
   render() {
     return (
       <header className="header">
         <nav>
           <ul>
-            <li>women</li>
-            <li>men</li>
-            <li>kids</li>
+            <Link to="/">
+              <li>women</li>
+            </Link>
+            <Link to="/">
+              <li>Men</li>
+            </Link>
+            <Link to="/">
+              <li>Kids</li>
+            </Link>
           </ul>
           <img src={logo} alt="website logo" />
           <ul>
@@ -19,7 +27,9 @@ export default class Header extends Component {
               $<img src={dropdown} alt="dropdown logo" />
             </li>
             <li>
-              <img src={cart} alt="cart logo" />
+              <Link to="\">
+                <img src={cart} alt="cart logo" />
+              </Link>
             </li>
           </ul>
         </nav>
