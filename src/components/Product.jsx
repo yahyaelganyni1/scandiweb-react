@@ -13,19 +13,33 @@ const GET_PRODUCTS = gql`
         inStock
         description
         brand
+        gallery
       }
     }
   }
 `;
 
 class Product extends Component {
+  displayProducts = () => {
+    const { data } = this.props;
+    if (data.loading) {
+      return <div>Loading...</div>;
+    }
+    return data.categories[1].products.map((product) => (
+      <li key={product.id}>
+        <h2>{product.name}</h2>
+        {
+          new DOMParser().parseFromString(product.description, 'text/xml')
+            .firstChild.innerHTML
+        }
+        <img src={product.gallery[1]} alt="" />
+      </li>
+    ));
+  };
+
   render() {
-    console.log(this.props.data);
-    return (
-      <div>
-        <h1>hello</h1>
-      </div>
-    );
+    console.log(this.props.data.categories);
+    return <ul>{this.displayProducts()}</ul>;
   }
 }
 
