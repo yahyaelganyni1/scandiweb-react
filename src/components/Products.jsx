@@ -27,6 +27,10 @@ const GET_PRODUCTS = gql`
 `;
 
 class Products extends Component {
+  state = {
+    cart: [],
+  };
+
   displayProducts = () => {
     const { data } = this.props;
     if (data.loading) {

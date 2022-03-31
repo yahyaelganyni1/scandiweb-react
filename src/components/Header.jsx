@@ -29,7 +29,7 @@ export default class Header extends Component {
               $ <img src={dropdown} alt="dropdown logo" />
             </li>
             <li>
-              <Link to="\">
+              <Link to="/cart">
                 <img src={cart} alt="cart logo" />
               </Link>
             </li>

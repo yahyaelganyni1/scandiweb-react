@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Products from './components/Products';
 import Clothes from './components/Clothes';
 import Tech from './components/Tech';
-
+import ShoppingCart from './components/ShoppingCart';
 
 class App extends Component {
 
@@ -17,10 +17,10 @@ class App extends Component {
         <div className="App">
           <Header />
           <Routes>
-
             <Route path="/" element={<Products />} />
             <Route path="/clothes" element={<Clothes />} />
             <Route path="/tech" element={<Tech />} />
+            <Route path="/cart" element={<ShoppingCart />} />
           </Routes>
         </div>
       </Router>
