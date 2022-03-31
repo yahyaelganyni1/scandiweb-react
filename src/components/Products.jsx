@@ -51,7 +51,7 @@ class Products extends Component {
         )}
 
         <img src={product.gallery[0]} alt="product img" width="200" />
-        <h2>{product.name}</h2>
+        <h2>{product.name} </h2>
         <p>
           {product.prices[0].amount} {product.prices[0].currency.symbol}
         </p>
