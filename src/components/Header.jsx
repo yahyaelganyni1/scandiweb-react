@@ -12,19 +12,21 @@ export default class Header extends Component {
         <nav>
           <ul>
             <Link to="/">
-              <li>women</li>
+              <li>All</li>
             </Link>
-            <Link to="/">
-              <li>Men</li>
+            <Link to="/clothes">
+              <li>clothes</li>
             </Link>
-            <Link to="/">
-              <li>Kids</li>
+            <Link to="/tech">
+              <li>Tech</li>
             </Link>
           </ul>
-          <img src={logo} alt="website logo" />
+          <Link to="/">
+            <img src={logo} alt="website logo" />
+          </Link>
           <ul>
             <li>
-              $<img src={dropdown} alt="dropdown logo" />
+              $ <img src={dropdown} alt="dropdown logo" />
             </li>
             <li>
               <Link to="\">

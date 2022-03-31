@@ -19,3 +19,7 @@ a {
 a:link {
   color: green;
 }
+
+li {
+  list-style: none;
+}
