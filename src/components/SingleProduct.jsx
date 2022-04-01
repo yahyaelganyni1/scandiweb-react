@@ -46,10 +46,10 @@ class SingleProduct extends Component {
               </p>
             </div>
           ))}
-          <p>
-            PRICE: {product.prices[0].amount}{' '}
-            {product.prices[0].currency.symbol}
-          </p>
+          <p> PRICE: </p>
+          <h4>
+            {product.prices[0].amount} {product.prices[0].currency.symbol}
+          </h4>
           <button>Add To Cart</button>
           {product.description}
         </div>
