@@ -1,0 +1,40 @@
+.single-product {
+  display: flex;
+  flex-wrap: wrap;
+  .image-display {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    .selected-img {
+      width: 80%;
+      height: auto;
+      padding: 0.5rem;
+    }
+  }
+  .product-description {
+    margin-top: 2em;
+    width: 50%;
+    li {
+      margin: 0.5em 1em 1em 0;
+    }
+
+    h1 {
+      font-size: 2em;
+      padding: 1em 0;
+      font-family: 'raleway';
+      font-weight: 600;
+    }
+
+    .size {
+      display: flex;
+    }
+    button {
+      display: block;
+      background-color: #5ece7b;
+      color: #fff;
+      padding: 0.5em 4em;
+      margin: 1em;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,42 +1,12 @@
 import React, { Component } from 'react';
-import { gql } from '@apollo/client';
-import { graphql } from '@apollo/client/react/hoc';
 import './products.scss';
 import cart from '../images/cart.svg';
-
-const GET_PRODUCTS = gql`
-  query {
-    category(input: { title: "all" }) {
-      name
-      products {
-        id
-        name
-        inStock
-        description
-        brand
-        gallery
-        prices {
-          amount
-          currency {
-            symbol
-          }
-        }
-      }
-    }
-  }
-`;
+import { Link } from 'react-router-dom';
 
 class Products extends Component {
-  state = {
-    cart: [],
-  };
-
-  displayProducts = () => {
-    const { data } = this.props;
-    if (data.loading) {
-      return <div>Loading...</div>;
-    }
-    return data.category.products.map((product) => (
+  render() {
+    const { product } = this.props;
+    return (
       <li
         key={product.id}
         className={!product.inStock ? 'out-of-stock' : 'zoom'}
@@ -51,20 +21,17 @@ class Products extends Component {
         )}
 
         <img src={product.gallery[0]} alt="product img" width="200" />
-        <h2>{product.name} </h2>
+        <h2>
+          <Link to={`/${product.id}`}>{product.name}</Link>
+        </h2>
         <p>
           {product.prices[0].amount} {product.prices[0].currency.symbol}
         </p>
       </li>
-    ));
-  };
-
-  render() {
-    console.log(this.props.data.category);
-    return <ul className="products">{this.displayProducts()} </ul>;
+    );
   }
 }
 
-export default graphql(GET_PRODUCTS)(Products);
+// export default graphql(GET_PRODUCTS)(withRouter(Products));
 
-// export default Products;
+export default Products;
