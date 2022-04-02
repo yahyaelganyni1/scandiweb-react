@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../images/logo.svg';
-import dropdown from '../images/dropdown.svg';
 import cart from '../images/cart.svg';
 import './header.scss';
 import { Link } from 'react-router-dom';
+import Currency from './Currency.jsx';
 
 export default class Header extends Component {
   render() {
@@ -25,11 +25,8 @@ export default class Header extends Component {
             <img src={logo} alt="website logo" />
           </Link>
           <ul>
-            <li>
-              ${' '}
-              <Link to="/single">
-                <img src={dropdown} alt="dropdown logo" />
-              </Link>
+            <li className="currency-dropdown">
+              <Currency />
             </li>
             <li>
               <Link to="/cart">

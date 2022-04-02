@@ -84,7 +84,7 @@ class App extends Component {
             <SingleProduct product={product} key={product.key} />
           </Route>
         )}
-
+        <ShoppingCart />
       </div>
     )
   }
