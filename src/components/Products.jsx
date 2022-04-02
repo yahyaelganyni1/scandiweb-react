@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class Products extends Component {
   render() {
-    const { product } = this.props;
+    const { product, onAddToCart } = this.props;
     return (
       <li
         key={product.id}
@@ -13,7 +13,7 @@ class Products extends Component {
       >
         {!product.inStock ? <p className="watermark">Out Of Sock</p> : ''}
         {product.inStock ? (
-          <button className="cart hidden">
+          <button className="cart hidden" onClick={() => onAddToCart(product)}>
             <img src={cart} alt="" />
           </button>
         ) : (

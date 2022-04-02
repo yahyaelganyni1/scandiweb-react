@@ -44,7 +44,14 @@ const GET_PRODUCTS = gql`
 
 class App extends Component {
 
-
+  state = {
+    cart: []
+  }
+  onAddToCart = (product) => {
+    this.setState({
+      cart: [...this.state.cart, product]
+    })
+  }
   render() {
     const { data } = this.props;
     {
@@ -53,13 +60,16 @@ class App extends Component {
       }
     }
 
+
     return (
+
+
       <div className="App">
         <Header />
         <ul className="products">
           {data.categories[0].products.map(product => (
             <Route exact path='/' >
-              <Products product={product} key={product.key} />
+              <Products product={product} key={product.key} onAddToCart={this.onAddToCart} />
             </Route>
           ))}
         </ul>
@@ -84,7 +94,7 @@ class App extends Component {
             <SingleProduct product={product} key={product.key} />
           </Route>
         )}
-        <ShoppingCart />
+        <ShoppingCart cart={this.state.cart} onAddToCart={this.onAddToCart} />
       </div>
     )
   }

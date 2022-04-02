@@ -13,7 +13,6 @@ const GET_PRODUCTS = gql`
 class Currency extends Component {
   render() {
     const { data } = this.props;
-    console.log(data.currencies);
 
     return (
       <select>
