@@ -5,9 +5,9 @@ class SingleProduct extends Component {
   state = {
     image: this.props.product.gallery[0],
   };
-  render() {
-    const { product } = this.props;
 
+  render() {
+    const { product, onAddToCart, setSelectedSize } = this.props;
     return (
       <div key={product.key} className="single-product">
         <div className="image-display">
@@ -37,20 +37,20 @@ class SingleProduct extends Component {
           {product.attributes.map((attribute, index) => (
             <div key={index}>
               <p>{attribute.name}</p>
-              <p>
-                <ul className="size">
-                  {attribute.items.map((item) => (
-                    <li> {item.value} </li>
-                  ))}
-                </ul>
-              </p>
+              <ul className="size">
+                {attribute.items.map((item, index) => (
+                  <li key={index} onClick={() => setSelectedSize(item.value)}>
+                    {item.value}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
           <p> PRICE: </p>
           <h4>
             {product.prices[0].amount} {product.prices[0].currency.symbol}
           </h4>
-          <button>Add To Cart</button>
+          <button onClick={() => onAddToCart(product)}>Add To Cart</button>
           {product.description}
         </div>
       </div>

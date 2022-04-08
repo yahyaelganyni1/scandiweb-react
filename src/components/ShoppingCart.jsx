@@ -2,25 +2,36 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CartProduct from './CartProduct';
+import cartLogo from '../images/cart.svg';
+import './ShoppingCart.scss';
 
-// create a class cpmoponent
 class ShoppingCart extends React.Component {
-  render() {
-    const { cart, onAddToCart } = this.props;
-    console.log(cart);
-    return (
-      <div>
-        {cart.length === 0 && <h2>Shopping Cart is empty </h2>}
+  totalItems(cart) {
+    const countProduct = cart.reduce((accum, item) => accum + item.quantity, 0);
+    return countProduct;
+  }
 
-        {cart.map((product) => (
-          <div key={product.id}>
-            <h2>{product.name}</h2>
-            <p>
-              {product.prices[0].amount} {product.prices[0].currency.symbol}
-            </p>
-            <button onClick={() => onAddToCart(product)}>Add to cart</button>
+  render() {
+    const { cart, onAddToCart, onRemoveFromCart } = this.props;
+    return (
+      <div className="shopping-Cart">
+        <h1 className="cart-header">Cart</h1>
+        {cart.length === 0 && (
+          <h2 className="empty-shoppingCart">Shopping Cart is empty </h2>
+        )}
+        {cart.length > 0 && (
+          <div>
+            {cart.map((product, index) => (
+              <CartProduct
+                key={index}
+                product={product}
+                onAddToCart={onAddToCart}
+                onRemoveFromCart={onRemoveFromCart}
+              />
+            ))}
           </div>
-        ))}
+        )}
       </div>
     );
   }

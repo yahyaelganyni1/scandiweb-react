@@ -16,6 +16,11 @@
     width: 50%;
     li {
       margin: 0.5em 1em 1em 0;
+      cursor: pointer;
+    }
+    .selected-size {
+      font-weight: bold;
+      background-color: #000000;
     }
 
     h1 {

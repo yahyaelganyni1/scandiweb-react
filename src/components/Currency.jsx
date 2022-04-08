@@ -17,7 +17,9 @@ class Currency extends Component {
     return (
       <select>
         {data.currencies?.map((currency, index) => (
-          <option key={index}>{currency.symbol}</option>
+          <option key={index} value={currency.symbol}>
+            {currency.symbol}
+          </option>
         ))}
       </select>
     );

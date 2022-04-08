@@ -10,7 +10,6 @@ import SingleProduct from './components/SingleProduct';
 import { gql } from '@apollo/client';
 import { graphql } from '@apollo/client/react/hoc';
 
-
 // let title = "all";
 const GET_PRODUCTS = gql`
 {
@@ -45,13 +44,47 @@ const GET_PRODUCTS = gql`
 class App extends Component {
 
   state = {
-    cart: []
+    cart: [],
+    selectedSize: "",
   }
+
+
   onAddToCart = (product) => {
-    this.setState({
-      cart: [...this.state.cart, product]
-    })
+    let cloneProduct = structuredClone(product);
+
+    const existingProduct = this.state.cart.find(p => p.id === cloneProduct.id);
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    }
+    else {
+      cloneProduct.quantity = 1;
+      this.setState({
+        cart: [...this.state.cart, cloneProduct]
+      })
+    }
   }
+
+  onRemoveFromCart = (product) => {
+
+    const existingProduct = this.state.cart.find(p => p.id === product.id);
+    if (existingProduct.quantity === 1) {
+      this.setState({
+        cart: this.state.cart.filter(p => p.id !== product.id)
+      })
+    }
+    else {
+      existingProduct.quantity -= 1;
+    }
+  }
+
+  setSelectedSize = (e) => {
+    this.setState({
+      selectedSize: e,
+    });
+    console.log(e)
+  };
+
+
   render() {
     const { data } = this.props;
     {
@@ -61,11 +94,14 @@ class App extends Component {
     }
 
 
+
+
+
     return (
 
 
       <div className="App">
-        <Header />
+        <Header cart={this.state.cart} onAddToCart={this.onAddToCart} onRemoveFromCart={this.onRemoveFromCart} />
         <ul className="products">
           {data.categories[0].products.map(product => (
             <Route exact path='/' >
@@ -91,10 +127,12 @@ class App extends Component {
 
         {data.categories[0].products.map(product =>
           <Route path={`/${product.id}`} >
-            <SingleProduct product={product} key={product.key} />
+            <SingleProduct product={product} key={product.key} onAddToCart={this.onAddToCart} setSelectedSize={this.setSelectedSize} bgColor={this.state.bgColor} />
           </Route>
         )}
-        <ShoppingCart cart={this.state.cart} onAddToCart={this.onAddToCart} />
+        <Route path="/cart" exact >
+          <ShoppingCart cart={this.state.cart} onAddToCart={this.onAddToCart} onRemoveFromCart={this.onRemoveFromCart} setSelectedSize={this.setSelectedSize} />
+        </Route>
       </div>
     )
   }

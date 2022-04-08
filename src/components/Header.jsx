@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import logo from '../images/logo.svg';
-import cart from '../images/cart.svg';
+import cartLogo from '../images/cart.svg';
 import './header.scss';
 import { Link } from 'react-router-dom';
 import Currency from './Currency.jsx';
+// import ShoppingCart from './ShoppingCart';
+import CartProduct from './CartProduct';
 
 export default class Header extends Component {
+  state = {
+    display: false,
+  };
+
   render() {
+    const { cart } = this.props;
     return (
       <header className="header">
         <nav>
@@ -30,7 +37,7 @@ export default class Header extends Component {
             </li>
             <li>
               <Link to="/cart">
-                <img src={cart} alt="cart logo" />
+                <img src={cartLogo} alt="cart logo" />
               </Link>
             </li>
           </ul>
